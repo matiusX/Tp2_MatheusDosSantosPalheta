@@ -8,6 +8,7 @@ Este repositório contém a implementação de programas para armazenamento e co
    * As funções que cada fonte contém
    * Qual o papel de cada função
 
+
 ## Arquivo de dados
 Os dados necessários para testar e avaliar os programas implementados estão disponíveis [nesse link](https://drive.google.com/file/d/1EVoP0d9Wwzj1O6eoFIkel9I3cpe43Gbv/view?usp=sharing) no formato CSV, que será utilizado exclusivamente como entrada de dados.
     
@@ -37,3 +38,5 @@ Os dados extraídos estão num arquivo de dados organizado por **Hashing**
   * `seek2 <Titulo>`
   * Utiliza-se um arquivo de índice secundário armazenado em memória secundária usando B+Tree.
   * O programa exibe os dados do registro que tenha o Título correspondente ao informado, caso exista, realizando uma busca ***no arquivo de índice secundário***. São informados a quantidade de blocos lidos para encontrar o registro no arquivo de índice secundário e a quantidade total de blocos do arquivo de índice secundário.
+
+##Entrada do programa
