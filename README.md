@@ -9,7 +9,8 @@ Este repositório contém a implementação de programas para armazenamento e co
    * Qual o papel de cada função
 
 ## Arquivo de dados
-
+Os dados para testes e avaliação dos programas implementados estão disponíveis https://drive.google.com/file/d/1EVoP0d9Wwzj1O6eoFIkel9I3cpe43Gbv/view?usp=sharing em formato CSV que servirá apenas como entrada de dados.
+    
 Campo | Tipo | Descrição
 | :---: | :---: | :---:
 ID  | inteiro | Código identificador do artigo 
