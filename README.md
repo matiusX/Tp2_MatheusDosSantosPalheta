@@ -9,7 +9,7 @@ Este repositório contém a implementação de programas para armazenamento e co
    * Qual o papel de cada função
 
 ## Arquivo de dados
-Os dados para testes e avaliação dos programas implementados estão disponíveis https://drive.google.com/file/d/1EVoP0d9Wwzj1O6eoFIkel9I3cpe43Gbv/view?usp=sharing em formato CSV que servirá apenas como entrada de dados.
+Os dados necessários para testar e avaliar os programas implementados estão disponíveis [nesse link](https://drive.google.com/file/d/1EVoP0d9Wwzj1O6eoFIkel9I3cpe43Gbv/view?usp=sharing) no formato CSV, que será utilizado exclusivamente como entrada de dados.
     
 Campo | Tipo | Descrição
 | :---: | :---: | :---:
@@ -22,9 +22,10 @@ Atualização  | data e hora | Data e hora da última atualização dos dados
 Snippet| alfa entre 100 e 1024 | Resumo textual do artigo
 
 ## Busca no arquivo de dados
+### Pesquisa utilizando índice primário
+  * Utiliza-se um arquivo de índice primário armazenado em memória secundária usando B+Tree
+  * O programa retorna o registro com ID correspondente ao informado, caso exista, realizando uma busca ***no arquivo de índice primário***. São exibidos todos os campos do registro, bem como a quantidade de blocos lidos para encontrá-lo no arquivo de índice e a quantidade total de blocos no arquivo de índice primário
 
-  ### Pesquisa utilizando índice primário
-      Arquivo de índice primário usando uma B+Tree armazenada em memória secundária
-
-  ### Pesquisa utilizando índice secundário
-      Arquivo de índice secundário usando uma outra B+Tree em memória secundária
+### Pesquisa utilizando índice secundário
+  * Utiliza-se um arquivo de índice secundário armazenado em memória secundária usando B+Tree
+  * O programa exibe os dados do registro que tenha o Título correspondente ao informado, caso exista, realizando uma busca ***no arquivo de índice secundário***. São informados a quantidade de blocos lidos para encontrar o registro no arquivo de índice secundário e a quantidade total de blocos do arquivo de índice secundário
