@@ -37,3 +37,5 @@ Os dados extraídos estão num arquivo de dados organizado por **Hashing**
   * `seek2 <Titulo>`
   * Utiliza-se um arquivo de índice secundário armazenado em memória secundária usando B+Tree.
   * O programa exibe os dados do registro que tenha o Título correspondente ao informado, caso exista, realizando uma busca ***no arquivo de índice secundário***. São informados a quantidade de blocos lidos para encontrar o registro no arquivo de índice secundário e a quantidade total de blocos do arquivo de índice secundário.
+
+## Como executar
