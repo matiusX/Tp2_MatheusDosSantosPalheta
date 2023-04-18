@@ -1,4 +1,4 @@
-# Tp-2-BD-I
+# Trabalho Prático 2 - Banco de Dados I
 Este repositório contém a implementação de programas para armazenamento e consulta de dados em memória secundária, utilizando estruturas de arquivo de dados e índice. Os programas oferecem suporte para inserção e diferentes formas de busca, seguindo as técnicas apresentadas nas aulas de organização e indexação de arquivos.
 
 ## Documentação
@@ -8,9 +8,8 @@ Este repositório contém a implementação de programas para armazenamento e co
    * As funções que cada fonte contém
    * Qual o papel de cada função
 
-
-## Arquivo de dados
-Os dados necessários para testar e avaliar os programas implementados estão disponíveis [nesse link](https://drive.google.com/file/d/1EVoP0d9Wwzj1O6eoFIkel9I3cpe43Gbv/view?usp=sharing) no formato CSV, que será utilizado exclusivamente como entrada de dados.
+## Entrada do programa
+Os dados necessários para testar e avaliar os programas implementados estão disponíveis [nesse link](https://drive.google.com/file/d/1EVoP0d9Wwzj1O6eoFIkel9I3cpe43Gbv/view?usp=sharing) no formato CSV, que será utilizado exclusivamente como entrada de dados, no seguinte formato: 
     
 Campo | Tipo | Descrição
 | :---: | :---: | :---:
@@ -38,5 +37,3 @@ Os dados extraídos estão num arquivo de dados organizado por **Hashing**
   * `seek2 <Titulo>`
   * Utiliza-se um arquivo de índice secundário armazenado em memória secundária usando B+Tree.
   * O programa exibe os dados do registro que tenha o Título correspondente ao informado, caso exista, realizando uma busca ***no arquivo de índice secundário***. São informados a quantidade de blocos lidos para encontrar o registro no arquivo de índice secundário e a quantidade total de blocos do arquivo de índice secundário.
-
-##Entrada do programa
