@@ -21,7 +21,9 @@ Citações |inteiro | Número de vezes que o artigo foi citado
 Atualização  | data e hora | Data e hora da última atualização dos dados
 Snippet| alfa entre 100 e 1024 | Resumo textual do artigo
 
-## Busca no arquivo de dados
+## Arquivo de dados
+Os dados extraídos devem estar num arquivo de dados organizado por **Hashing**
+
 ### Pesquisa utilizando índice primário
   * Utiliza-se um arquivo de índice primário armazenado em memória secundária usando B+Tree
   * O programa retorna o registro com ID correspondente ao informado, caso exista, realizando uma busca ***no arquivo de índice primário***. São exibidos todos os campos do registro, bem como a quantidade de blocos lidos para encontrá-lo no arquivo de índice e a quantidade total de blocos no arquivo de índice primário
