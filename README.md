@@ -22,8 +22,8 @@ Snippet| alfa entre 100 e 1024 | Resumo textual do artigo
 
 ## Busca no arquivo de dados
 
-## Pesquisa utilizando índice primário
-  * Arquivo de índice primário usando uma B+Tree armazenada em memória secundária
+  ### Pesquisa utilizando índice primário
+      Arquivo de índice primário usando uma B+Tree armazenada em memória secundária
 
-## Pesquisa utilizando índice secundário
-  * Arquivo de índice secundário usando uma outra B+Tree em memória secundária
+  ### Pesquisa utilizando índice secundário
+      Arquivo de índice secundário usando uma outra B+Tree em memória secundária
