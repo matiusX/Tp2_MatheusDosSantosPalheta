@@ -21,6 +21,9 @@ Citações |inteiro | Número de vezes que o artigo foi citado
 Atualização  | data e hora | Data e hora da última atualização dos dados
 Snippet| alfa entre 100 e 1024 | Resumo textual do artigo
 
+### Parser
+Visando diminuir o custo ao ler a entrada, foi utilizado um parser externo para ajustar o "artigo.csv". O arquivo utilizado pelo programa é o "artigo.txt" no qual cada linha representa um campo de um artigo. Essa decisão foi tomada após tentar utilizar regex.
+
 ## Arquivo de dados
 Os dados extraídos estão num arquivo de dados organizado por **Hashing**
 
