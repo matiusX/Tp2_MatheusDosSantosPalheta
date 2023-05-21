@@ -21,7 +21,7 @@ Citações |inteiro | Número de vezes que o artigo foi citado
 Atualização  | data e hora | Data e hora da última atualização dos dados
 Snippet| alfa entre 100 e 1024 | Resumo textual do artigo
 
-### Parser
+### Otimização da entrada
 Visando diminuir o custo ao ler a entrada, foi utilizado um parser externo para ajustar o "artigo.csv". O arquivo utilizado pelo programa é o "artigo.txt" no qual cada linha representa um campo de um artigo. Essa decisão foi tomada após tentar utilizar regex.
 
 ## Arquivo de dados
@@ -41,4 +41,27 @@ Os dados extraídos estão num arquivo de dados organizado por **Hashing**
   * Utiliza-se um arquivo de índice secundário armazenado em memória secundária usando B+Tree.
   * O programa exibe os dados do registro que tenha o Título correspondente ao informado, caso exista, realizando uma busca ***no arquivo de índice secundário***. São informados a quantidade de blocos lidos para encontrar o registro no arquivo de índice secundário e a quantidade total de blocos do arquivo de índice secundário.
 
-## Como executar
+## Fontes e funções
+   * hash.cpp: modifica tudo na tabela hash, incluindo registros e buckets.
+   * bpt_sk1.cpp: Árvore b+ implementada para a busca utilizando arquivo de índice primário (inteiro).
+   * bpt_sk2.cpp: Árvore b+ implementada para a busca utilizando arquivo de índice secundário (string).
+ 
+upload | findrec | seek 1 | seek 2
+| :---: | :---: | :---: | :---:
+hash.cpp, bpt_sk1.cpp, bpt_sk2.cpp | hash.cpp | bpt_sk1.cpp | bpt_sk2.cpp
+
+## Papel de cada função
+nome | descrição | programa
+| :---: | :---: | :---: 
+adiciona_el_bk | insere chave no bucket | hash.cpp
+le_bucket | retorna um bucket a partir da chave | hash.cpp
+cria_bucket | cria um bucket | hash.cpp
+funcao_hash | retorna o id a partir de uma chave | hash.cpp
+hash_table | cria tabela hash | hash.cpp
+get_registro | procura registro no bloco | hash.cpp
+cria_bucket | cria um bucket | hash.cpp
+retorna_bloco | retorna um bloco | hash.cpp
+adiciona_chave_hash | adiciona um elemento na hash | hash.cpp
+get_bucket | retorna um bucket a partir de uma chave | hash.cpp
+inicia_hash | começa a tabela | hash.cpp
+
