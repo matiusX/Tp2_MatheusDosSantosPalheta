@@ -65,3 +65,5 @@ adiciona_chave_hash | adiciona um elemento na hash | hash.cpp
 get_bucket | retorna um bucket a partir de uma chave | hash.cpp
 inicia_hash | começa a tabela | hash.cpp
 
+## Observação
+a entrada "artigo_20000.txt" é uma versão mais leve da entrada que pode ser rodada com a seguinte configuração: TAM 510, MAX 1024 no hash.hpp
