@@ -1,5 +1,6 @@
 #include "hash.hpp"
 #include "header.hpp"
+
 void le_arquivo(char* caminho){
     FILE* entrada = fopen(caminho, "r");
     FILE* saida = fopen("reg.txt", "w");
@@ -36,14 +37,20 @@ void le_arquivo(char* caminho){
 void gera_hash(){
     FILE* arq = fopen("reg.txt", "r");
     fseek(arq,0,SEEK_END);
-    int posicao = ftell(arq)/TAM_BLOCO;
-    if(posicao < 0){return;}
-    inicia_hash(posicao*2);
+    int pos = ftell(arq)/TAM_BLOCO;
+    if(pos < 0){
+        printf("Erro de Leitura: número de posições no arquivo menor do que zero\n");
+        return;
+    }
+    inicia_hash(pos*2);
     fseek(arq,0,SEEK_SET);
     bloco_t bloco;
-    for(int i = 0; i < posicao; i++){
+    for(int i = 0; i < pos; i++){
         int err = fread(&bloco, TAM_BLOCO, 1, arq);
-        if(err != 1){return;}
+        if(err != 1){
+            printf("Erro ao ler o arquivo.\n");
+            return;
+        }
         for(int j = 0; j < QNT_REGISTROS_POR_BLOCO; j++){
             int id = bloco.regs[j].id;
             if(bloco.regs[j].id == -1) break;
@@ -57,4 +64,5 @@ void gera_hash(){
 int main(int argc, char *argv[]){
     le_arquivo(argv[1]);
     gera_hash();
+    printf("Upload completo.\n");
 }

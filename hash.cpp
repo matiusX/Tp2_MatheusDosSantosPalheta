@@ -11,19 +11,28 @@ bucket_t* le_bucket(int ponteiro) {
         return NULL;
     }
     FILE* arquivo = fopen(arquivo_auxiliar.c_str(), "r");
-    if (!arquivo) {return NULL;}
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo %s.\n", arquivo_auxiliar.c_str());
+        return NULL;
+    }
+
     int erro = fseek(arquivo, ponteiro * TAM_BLOCO, SEEK_SET);
     if (erro != 0) {
+        printf("erro no fseek.\n");
         fclose(arquivo);
-        return NULL;}
+        return NULL;
+    }
 
     bucket_t* bucket_aux = (bucket_t*)malloc(sizeof(bucket_t));
     if (bucket_aux == NULL) {
+        printf("nao deu p alocar na memoria.\n");
         fclose(arquivo);
-        return NULL;}
+        return NULL;
+    }
 
     erro = fread(bucket_aux, sizeof(bucket_t), 1, arquivo);
     if (erro != 1) {
+        printf("nao deu p ler o arquivo\n");
         free(bucket_aux);
         fclose(arquivo);
         return NULL;
@@ -33,13 +42,13 @@ bucket_t* le_bucket(int ponteiro) {
     return bucket_aux;
 }
 
-void adiciona_el_bk(bucket_t* bkt, int chave_valor, int item_valor){
-	if(bkt->posicao == TAM){
-		bucket_t* aux = bkt;
-		int aux_prx = bkt->proximo;
-		while(aux_prx != -1){
-			aux = le_bucket(aux_prx);
-			if(aux->posicao == TAM) aux_prx = aux->proximo;
+void adiciona_el_bk(bucket_t* n, int chave_valor, int item_valor){
+	if(n->posicao == TAM){
+		bucket_t* aux = n;
+		int aux_next = n->proximo;
+		while(aux_next != -1){
+			aux = le_bucket(aux_next);
+			if(aux->posicao == TAM) aux_next = aux->proximo;
 			else break;
 		}
 
@@ -48,8 +57,10 @@ void adiciona_el_bk(bucket_t* bkt, int chave_valor, int item_valor){
 			int err = fseek(arq, 0, SEEK_END);
 
 			if(err){
+				printf("A pesquisa nao retornou resultados.\n");
 				fclose(arq);
-				return;
+				return; 
+
 			}else{
 				err = ftell(arq);
 
@@ -69,7 +80,20 @@ void adiciona_el_bk(bucket_t* bkt, int chave_valor, int item_valor){
 
 					adiciona_el_bk(novo_bucket, chave_valor, item_valor);
 					int err = fseek(arq, aux->elemento*TAM_BLOCO, SEEK_SET);
-                    fclose(arq);
+					
+					if(err){
+						printf("Erro: retorno inválido do fseek 3.\n");
+						fclose(arq);
+						return;
+					
+					}else{
+						int err = fwrite(aux,TAM_BLOCO,1, arq);
+						fclose(arq);
+
+						if(err == 0){
+							printf("Erro: Não foi possível salvar o arquivo 1.\n");
+						}
+					}
 				}
 			}
 
@@ -78,34 +102,37 @@ void adiciona_el_bk(bucket_t* bkt, int chave_valor, int item_valor){
 		}
 	}
 
-	else if(bkt->posicao < TAM-1){
-		bkt->chave[bkt->posicao] = chave_valor;
-		bkt->item[bkt->posicao]= item_valor;
-		bkt->posicao++;
+	else if(n->posicao < TAM-1){
+		n->chave[n->posicao] = chave_valor;
+		n->item[n->posicao]= item_valor;
+		n->posicao++;
 		FILE* arq = fopen("hash_aux.txt","r+");
-		int err = fseek(arq, bkt->elemento*TAM_BLOCO, SEEK_SET);
+		int err = fseek(arq, n->elemento*TAM_BLOCO, SEEK_SET);
 		if(err){
 			printf("Erro: retorno inválido do fseek 4.\n");
 			fclose(arq);
 			return; 
 		}else{
-			err = fwrite(bkt, TAM_BLOCO, 1,arq);
+			err = fwrite(n, TAM_BLOCO, 1,arq);
 			fclose(arq);
+			if(!err){
+				printf("Erro: Não foi possível salvar o arquivo 2.\n");
+			}
 		}	
 	}
 }
 
-pair<int, int> get_registro(bucket_t* bucket, int chave_valor){
-	bucket_t* aux = bucket;
-	int qbl = 0;
-	while(aux != NULL){
+pair<int, int> get_registro(bucket_t* n, int chave_valor){
+	bucket_t* aux = n;
+	int qnt_blocos_lidos = 0;
+	while(aux != NULL){ //procurando em uma lista de buckets
 		for(int i = 0; i < aux->posicao; i++){
-			if(chave_valor == aux->chave[i]) return pair<int, int> (aux->item[i],qbl);
+			if(chave_valor == aux->chave[i]) return pair<int, int> (aux->item[i],qnt_blocos_lidos);
 		}
 		aux = le_bucket(aux->proximo);
-		qbl++;
+		qnt_blocos_lidos++;
 	}
-	return pair<int,int> (-1,qbl);
+	return pair<int,int> (-1,qnt_blocos_lidos);
 }
 
 int cria_bucket(){

@@ -5,23 +5,25 @@
 #include <iostream>
 #include <stdlib.h>
 #define TAM_BLOCO 4096
-#define TAM 582
+#define TAM 510
 using namespace std; 
-#define MAX 1021439 //serve p 20k
+#define MAX 1023 //serve p 20k
 
 typedef struct bucket_t{
 	int chave[TAM];
 	int item[TAM];
 	int elemento;
 	int proximo;
-    int vazio;
+    int espaco;
 	int posicao;
 }bucket_t;
 
 int cria_bucket();
 bucket_t* le_bucket(int pointer);
-void adiciona_el_bk(bucket_t* n, int chave, int valor);
-pair<int, int> get_registro(bucket_t* n, int chave);
+void adiciona_el_bk(bucket_t* n, int aKey, int aValue);
+pair<int, int> get_registro(bucket_t* n, int aKey);
+void limpa_arquivo();
+
 
 typedef struct hash_bloco_t{
     int elementos[MAX];
