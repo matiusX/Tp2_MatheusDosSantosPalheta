@@ -34,7 +34,7 @@ void le_arquivo(char* caminho){
     fclose(saida);
 }
 
-void gera_hash(){
+void generate_indexes(){
     FILE* arq = fopen("reg.txt", "r");
     fseek(arq,0,SEEK_END);
     int pos = ftell(arq)/TAM_BLOCO;
@@ -63,6 +63,6 @@ void gera_hash(){
 
 int main(int argc, char *argv[]){
     le_arquivo(argv[1]);
-    gera_hash();
+    generate_indexes();
     printf("Upload completo.\n");
 }
